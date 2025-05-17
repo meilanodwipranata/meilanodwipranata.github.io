@@ -1,5 +1,8 @@
 ## Daftar Isi
 
+
+## Linux
+
 1. [File Sharing Host dan Guest (Virt Manager)](./linux/file-sharing-host-dan-guest-virt-manager.md)  
 2. [Instalasi DHCP di Debian](./linux/instalasi-dhcp-debian.md)  
 3. [Instalasi SSH Server di Debian](./linux/instalasi-ssh-server-debian.md)  
@@ -14,3 +17,6 @@
 12. [HTTPS di Apache Debian](./linux/konfigurasi-webserver-apache-https-debian.md)  
 13. [Mail Server: Postfix, Dovecot, Roundcube](./linux/postfix-dovecot-roundcube-mailserver.md)  
 14. [FTP & FTPS Server (ProFTPD)](./linux/proftpd-ftp-ftps.md)
+
+
+## Mikrotik
