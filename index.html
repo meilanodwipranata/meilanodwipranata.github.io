@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>Portfolio - Meilano</title>
+
+</head>
+<body class="bg-body" style="font-family: Inter;">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 z-50 px-7 items-center h-20 2xl:h-24 lg:px-32 xl:top-0 flex justify-between w-full ease-in-out duration-500 overflow-x-hidden" id="navbar">
+        <div data-aos="fade-down" data-aos-duration="800" data-aos-delay="200">
+            <a href="/" class="flex text-lg font-semibold text-indigo-200 2xl:text-2xl ">
+                <span class="text-indigo-500 font-bold" style="font-family: Poppins;">$ </span> cd   <span class="text-indigo-500 font-bold text-[20px]">/</span><span>home</span><span class="text-indigo-500 font-bold text-[20px]">/</span><span class="text-white inline">meilano</span> <div class="w-3 h-5 mt-1 bg-slate-400 typing-animation"></div>
+            </a>
+        </div>
+        <div class="flex items-center h-full"  data-aos="fade-down" data-aos-duration="800"  data-aos-delay="200">
+            <div class="max-h-10">
+                <button class="lg:hidden my-auto h-7 w-7 flex flex-col" id="btnNavbar">
+                    <div class="burger-line mb-auto origin-top-left mt-0 transition duration-300" id="burgerLine1"></div>
+                    <div class="burger-line my-auto origin-left transition-all ease-in-out duration-300" id="burgerLine2"></div>
+                    <div class="burger-line mb-0 origin-bottom-left mt-auto transition duration-300" id="burgerLine3"></div>
+                </button>
+            </div>
+            <div class="hidden lg:flex items-center">
+                <a class="text-slate-400 text-md 2xl:text-xl font-semibold mx-3 ease-in-out duration-500 hover:text-white hover:scale-110" href="#about">About</a>
+                <a class="text-slate-400 text-md 2xl:text-xl font-semibold mx-3 ease-in-out duration-500 hover:text-white hover:scale-110" href="#skills">Skills</a>
+                <a class="text-slate-400 text-md 2xl:text-xl font-semibold mx-3 ease-in-out duration-500 hover:text-white hover:scale-110 w-32 h-11 2xl:w-44 2xl:h-14 inline-flex btn-outline" href="#contact">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+    <div class="fixed right-0 me-4 top-24 w-64 flex flex-col items-start z-40 bg-slate-950 rounded-xl bg-opacity-80 p-5 backdrop-filter backdrop-blur-sm origin-top-right scale-0 transition duration-300 border-2 border-blue-700" id="navMobile">
+        <a class="text-slate-300 text-xl 2xl:text-xl font-semibold mx-3 my-3 ease-in-out duration-500 hover:text-white hover:scale-110" href="#about">About</a>
+        <a class="text-slate-300 text-xl 2xl:text-xl font-semibold mx-3 my-3 ease-in-out duration-500 hover:text-white hover:scale-110" href="#skills">Skills</a>
+        <a class="text-slate-300 text-xl 2xl:text-xl font-semibold mx-3 my-3 ease-in-out duration-500 hover:text-white hover:scale-110 w-40 h-12 inline-flex btn-outline" href="#contact">Contact Me</a>
+    </div>
+    <!-- / Navigation Bar -->
+
+    <!-- Content -->
+    <section class="section-class md:flex md:flex-row mt-36 md:mt-56 lg:mt-52 2xl:mt-[345px] 2xl:scale-125 2xl:max-w-6xl 2xl:mb-32 overflow-x-hidden">
+
+        <div class="max-w-lg md:max-w-sm lg:max-w-md my-auto xl:max-w-lg xl:me-40 md:flex-col">
+            <p class="text-gray-400 font-semibold text-sm" data-aos="fade-down" data-aos-duration="800" data-aos-delay="800">Hi there, my name is</p>
+            <p class="text-blue-600 bg-gradient-to-r from-blue-600 to-blue-200 text-transparent bg-clip-text font-bold text-4xl mt-2" data-aos="fade-down" data-aos-duration="900" data-aos-delay="600">Meilano Dwi Pranata</p>
+            <div class="blue-line max-w-lg" data-aos="zoom-in" data-aos-duration="800"></div>
+            <p class="mt-3 text-indigo-300 font-medium" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">Fresh Graduated Network Engineering Student and Hobbyist Programmer who is Really Passionate to Learn About Technology.</p>
+            <div class="flex">
+                <div class="inline" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="1200">
+                    <a class="font-semibold flex h-11 w-32 bg-blue-600 items-center justify-center rounded-xl mt-5 mr-5 transition duration-300 hover:scale-110 hover:bg-blue-500 hover:text-gray-100" href="#about">
+                        <span>Learn More</span>
+                    </a>
+                </div>
+                <div class="inline" data-aos="zoom-in" data-aos-duration="900" data-aos-delay="1200">
+                    <a class="btn-outline mt-5 w-32" href="https://meilanodwipranata.github.io/project">
+                        <span>My Project</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="overflow-hidden md:flex-col">
+            <img src="dist/img/char.png" alt="" class="max-w-[280px] rounded-xl shadow-lg mt-16 mx-auto md:ms-10 md:my-auto" data-aos="zoom-in" data-aos-duration="1100" data-aos-delay="700" data-aos-anchor-placement="top-bottom">
+        </div>
+
+    </section>
+
+    <section class="section-class max-w-2xl mt-20 md:max-w-2xl md:mt-32 xl:mt-40 2xl:mt-64 lg:max-w-4xl xl:max-w-5xl 2xl:scale-125  overflow-x-hidden" id="about">
+        <div class="text-center">
+            <h1 class="header-section pt-24" data-aos="fade-up" data-aos-duration="600" data-aos-anchor-placement="bottom-bottom">About Me</h1>
+            <div class="blue-line mx-auto" data-aos="fade-up" data-aos-duration="900" data-aos-anchor-placement="center-bottom"></div>
+        </div>
+        <div class="mt-5 flex items-center flex-col lg:flex-row">
+            <div class="mx-auto md:inline md:mx-0 md:float-lef lg:mx-4">
+                <div class="border-4 inline-flex rounded-full p-1 border-blue-600 my-7" data-aos="zoom-in" data-aos-duration="600">
+                    <img src="dist/img/me.jpg" alt="" class="lg:max-w-[270px] max-w-[230px] rounded-full" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
+                </div>
+            </div>
+            <div class="ms-2 lg:ms-7">
+                <p class="text-white" data-aos="fade-right" data-aos-duration="800" data-aos-delay="500"> My name is Meilano. I'm a Graduated Vocational High School Computer Network Engineer Student. I was graduated from SMK Negeri 1 doko, Jawa Timur. I have a strong interest in the intersection of technology. I enjoy learning about network infrastructure and programming. <br><br> I really passionate learn about system network administration. For example, configuring network device or server computer such as router, switch, hub, access point, linux server, windows server and many others. And I also like to learning about programming, build a simple script or app, automating some stuff, even create a website like this one!</p>
+                <div class="flex">
+                    <div class="inline" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300" data-aos-anchor-placement="center-bottom">
+                        <a class="btn-outline w-36 rounded-full me-3 mt-5" href="https://instagram.com/meilano.amp"><span class="fa-brands fa-instagram text-xl"></span>   <span>Instagram</span></a>
+                    </div>
+                    <div class="inline" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400" data-aos-anchor-placement="center-bottom">
+                        <a class="btn-outline w-28 rounded-full mt-5" href="https://github.com/meilanodwipranata"><span class="fa-brands fa-gitlab text-xl"></span>   <span>Github</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-class max-w-xl origin-top md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:scale-125 overflow-x-hidden" id="skills">
+        <div class="text-center mb-10">
+            <h1 class="header-section pt-24" data-aos="fade-up" data-aos-duration="600" data-aos-anchor-placement="center-bottom">Skills</h1>
+            <div class="blue-line mx-auto" data-aos="fade-up" data-aos-duration="900" data-aos-anchor-placement="center-bottom"></div>
+        </div>
+        <div class="flex-row md:flex justify-evenly">
+            <div class="inline">
+                <h1 class="text-3xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-blue-600 to-rose-500 inline-flex" data-aos="fade-left" data-aos-duration="600">Advanced</h1>
+                <ul class="ms-10 mt-3 text-gray-200 list-disc font-semibold text-lg mb-5" data-aos="fade-left" data-aos-duration="800">
+                    <li>Network Infrastructure and Design Implementation </li>
+                    <li>Linux and Windows Server Administration </li>
+                    <li>Routing and Switching Configuration (Mikrotik) </li>
+                    <li>Virtualization  (VMware) </li>
+                    <li>Firewall and Security </li>
+                    <li>Scripting and Network Automation using Python</li>
+                    <li>Bash Scripting</li>
+                </ul>
+            </div>
+            <div class="inline">
+                <div class="mb-5">
+                    <h1 class="text-3xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-blue-600 to-orange-400 inline-flex" data-aos="fade-left" data-aos-duration="600" data-aos-delay="100">Intermediate</h1>
+                    <ul class="ms-10 mt-3 text-gray-200 list-disc font-semibold text-lg" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+                        <li>Git</li>
+                        <li>Network Automation using Ansible</li> 
+                        <li>HTML and CSS</li> 
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="section-class md:max-w-3xl justify-center origin-top 2xl:scale-110 xl:mb-28 overflow-hidden" id="contact">
+        <div class="text-white font-medium text-md lg:text-lg text-center my-5">Or you can message me directly to my email <span class="text-blue-400">meilanodwipranata@gmail.com</span></div>
+    </section>
+
+    <footer class="bg-slate-950 h-28 flex items-center justify-center mt-20">
+        <div class="text-center text-white">
+            <p class="text-sm xl:text-lg font-semibold">Made with <a href="" class="text-blue-200 underline">Blog</a> by Meilano Dwi Pranata</p>
+            <p class="font-semibold text-blue-500 text-sm xl:text-lg">meilanodwipranata@gmail.com</p>
+        </div>
+    </footer>
+
+    <!-- / Content -->
+
+    <script src="aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+        });
+    </script>
+</body>
+</html>
