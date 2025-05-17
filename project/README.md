@@ -1,1 +1,10 @@
-**halo**
+1. [Pendahuluan](./pendahuluan.md)
+2. [Instalasi](./instalasi.md)
+3. [Konfigurasi](./konfigurasi.md)
+4. [Penggunaan Dasar](./penggunaan-dasar.md)
+5. [Fitur Lanjutan](./fitur-lanjutan.md)
+6. [Tips dan Trik](./tips-dan-trik.md)
+7. [Pemecahan Masalah](./pemecahan-masalah.md)
+8. [FAQ](./faq.md)
+9. [Referensi](./referensi.md)
+10. [Penutup](./penutup.md)
