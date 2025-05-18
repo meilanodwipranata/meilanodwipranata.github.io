@@ -14,7 +14,7 @@ Jika pada kondisi diatas berbeda dengan kondisi jaringan ditempat anda, maka kon
 ## Konfigurasi Dasar
 
 Berikut ini adalah Topologi Jaringan dan IP address yang akan kita gunakan
-<center><img src="https://drive.google.com/uc?export=view&id=12sHP2wx86wHIKdJ_IGszkgvZ0bu3oRds"></center>
+<center><img src="/notes/image/001-loadbalace-pcc.png"></center>
 <pre>/ip address
 add address=192.168.101.2/30 interface=ether1
 add address=192.168.102.2/30 interface=ether2
@@ -136,7 +136,7 @@ add check-gateway=ping dst-address=0.0.0.0/0 gateway=192.168.101.1 routing-mark=
 
 ## Pengujian
 Dari hasil pengujian kami, didapatkan sebagai berikut.
-<center><img src="https://drive.google.com/uc?export=view&id=1rxqkfi6g7RubQHsBVpM699EoMqLfP1BT"></center>
+<center><img src="/notes/image/002-loadbalace-pcc.jpeg"></center>
 
 Dari gambar terlihat, bahwa hanya dengan melakukan 1 file download (1 koneksi), kita hanya mendapatkan speed 56kBps (448kbps) karena pada saat itu melewati gateway ISP1, sedangkan jika kita mendownload file (membuka koneksi baru) lagi pada web lain, akan mendapatkan 30kBps (240kbps). Dari pengujian ini terlihat dapat disimpulkan bahwa
 512kbps + 256kbps ≠ 768kbps
