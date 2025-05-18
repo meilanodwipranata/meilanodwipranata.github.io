@@ -22,6 +22,7 @@ Adapun tujuan dari praktikum adalah agar mahasiswa dapat :
 **Topologi Jaringan  
 **
 
+>
 ![1](https://edosyam.wordpress.com/wp-content/uploads/2016/09/1.png?w=300&h=202)
 
 **Dasar Teori**
@@ -42,7 +43,8 @@ RIP adalah sebuah protokol dyanamic routing yang menggunakan sebuah algoritman b
 >*   Buka winbox dan lanjutkan dengan mengkonfigurasi IP pada mikrotik, Gunakan Eth2 sebagai Interface yang akan ber-interaksi langsung dengan PC Client.
 
 >*   Setelah melakukan konfigurasi IP untuk PC Client, lanjutkan dengan memasangkan IP ke interface Eth3 yang akan terhubung langsung dengan router tetangga. Gunakan IP 200.200.200.2/24.
- ![2](https://edosyam.wordpress.com/wp-content/uploads/2016/10/2.png?w=640)
+>
+![2](https://edosyam.wordpress.com/wp-content/uploads/2016/10/2.png?w=640)
 
 >*   Setelah melakukan konfigurasi IP selanjutnya adalah melakukan konfigurasi Dinamik routing dengan menggunakan protokol OSPF.
 
@@ -63,17 +65,19 @@ Langkah Routing RIP
 
 >*   Untuk melakukan Routing menggunakan Protokol RIP masuk pada menu RIP di Routing – RIP.
 >*   Masukkan Interface yang akan kita gunakan untuk melakukan Dynamic Routing pilih saja ALL agar semua interface masuk kedalam list routing RIP.
+>
 
 ![6.PNG](https://edosyam.wordpress.com/wp-content/uploads/2016/10/6.png?w=640)
 
 >*   Lalu masukkan network yang akan kita hubungkan menggunakan Routing RIP, masuk ke tab network,lakukan penambahan network dengan cara klik pada ikon “+” pada tab network dilanjutkan dengan memasukkan dua network yang ingin kita hubungkan.
+>
 ![7.PNG](https://edosyam.wordpress.com/wp-content/uploads/2016/10/7.png?w=640)
 
 >*   Lakukan konfigurasi yang sama pada router 2. Tunggu beberapa saat maka router akan melakukan update routing table. Lakukan PING antar PC client, jika berhasil maka anda terlah berhasil melakukan Dynamic Routing Menggunakan Router Mikrotik.
 >*   Percobaan selesai.
 
 **Hasil**
-
+>
 ![8](https://edosyam.wordpress.com/wp-content/uploads/2016/10/8.png?w=300&h=153)
 
 >Kedua pc dapat melakukan ping, yang berarti kedua pc telah tersambung satu sama lain.
