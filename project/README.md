@@ -27,6 +27,9 @@
   - [Web Proxy Mikrotik](./mikrotik/mikrotik-web-proxy.md)
   - [Config Dasar MIkrotik](./mikrotik/002-ConfigDasarMIkrotik.md)
   - [Config Static Routing](./mikrotik/002-static-routing.md)
+  - [Config Static Routing](./mikrotik/000-dynamic-routing-ospf-rip.md)
+
+
 
 
 
