@@ -7,9 +7,8 @@
 
 <details>
   <summary><strong>Linux</strong></summary>
->
-> 1. [File Sharing Host dan Guest (Virt Manager)](./linux/file-sharing-host-dan-guest-virt-manager.md)
-> 2. [Instalasi DHCP di Debian](./linux/instalasi-dhcp-debian.md)
+  1. [File Sharing Host dan Guest (Virt Manager)](./linux/file-sharing-host-dan-guest-virt-manager.md)
+  2. [Instalasi DHCP di Debian](./linux/instalasi-dhcp-debian.md)
 > 3. [Instalasi SSH Server di Debian](./linux/instalasi-ssh-server-debian.md)
 > 4. [Instalasi Webmin](./linux/instalasi-webmin.md)
 > 5.  [IPTables Port Forwarding](./linux/iptables-port-forwarding.md)
