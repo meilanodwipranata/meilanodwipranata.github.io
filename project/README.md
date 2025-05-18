@@ -22,7 +22,7 @@
 > 12.  [HTTPS di Apache Debian](./linux/konfigurasi-webserver-apache-https-debian.md)
 > 13.  [Mail Server: Postfix, Dovecot, Roundcube](./linux/postfix-dovecot-roundcube-mailserver.md)
 > 14. [FTP & FTPS Server (ProFTPD)](./linux/proftpd-ftp-ftps.md)
-
+</details>
 
 <details>
   <summary><strong>Mikrotik</strong></summary>
@@ -32,3 +32,5 @@
 > 3.  [VLAN Mikrotik](./mikrotik/004-VlanMikrotik.md)  
 > 4.  [Web Proxy Mikrotik](./mikrotik/mikrotik-web-proxy.md)
 > 5.  [Config Dasar MIkrotik](./mikrotik/002-ConfigDasarMIkrotik.md)
+
+</details>
