@@ -1,6 +1,5 @@
 ## Daftar Isi
 
-<details>
   <summary><strong>Linux</strong></summary>
 
   - [File Sharing Host dan Guest (Virt Manager)](./linux/file-sharing-host-dan-guest-virt-manager.md)
@@ -17,11 +16,9 @@
   - [HTTPS di Apache Debian](./linux/konfigurasi-webserver-apache-https-debian.md)
   - [Mail Server: Postfix, Dovecot, Roundcube](./linux/postfix-dovecot-roundcube-mailserver.md)
   - [FTP & FTPS Server (ProFTPD)](./linux/proftpd-ftp-ftps.md)
-</details>
 
 
 
-<details>
   <summary><strong>Mikrotik</strong></summary>
   
   - [Command Basic Mikrotik](./mikrotik/001-CommandBasicMIkrotik.md)
@@ -29,8 +26,6 @@
   - [VLAN Mikrotik](./mikrotik/004-VlanMikrotik.md)
   - [Web Proxy Mikrotik](./mikrotik/mikrotik-web-proxy.md)
   - [Config Dasar MIkrotik](./mikrotik/002-ConfigDasarMIkrotik.md)
-
-</details>
 
 
 
