@@ -1,14 +1,12 @@
 ## Daftar Isi
 
 
-<details>
-  <summary><strong>Linux</strong></summary>
-  1.
-  2.
+
   
 
 
-## Linux
+<details>
+  <summary><strong>Linux</strong></summary>
 >
 > 1. [File Sharing Host dan Guest (Virt Manager)](./linux/file-sharing-host-dan-guest-virt-manager.md)
 > 2. [Instalasi DHCP di Debian](./linux/instalasi-dhcp-debian.md)
@@ -26,7 +24,8 @@
 > 14. [FTP & FTPS Server (ProFTPD)](./linux/proftpd-ftp-ftps.md)
 
 
-## Mikrotik
+<details>
+  <summary><strong>Mikrotik</strong></summary>
 > 
 > 1. [Command Basic Mikrotik](./mikrotik/001-CommandBasicMIkrotik.md)  
 > 2.  [Load Balance PCC](./mikrotik/003-LoadBalancePCC.md)  
