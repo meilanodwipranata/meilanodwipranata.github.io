@@ -31,3 +31,7 @@
   - [Config Dasar MIkrotik](./mikrotik/002-ConfigDasarMIkrotik.md)
 
 </details>
+
+
+
+<center>Copyrigh by Meilano Dwi Pranata</center>
