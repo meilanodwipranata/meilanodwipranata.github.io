@@ -63,8 +63,8 @@ Capture dari tabel routing keempat router tersebut sebagai berikut :
 
 *Di sisi Wireless Router B :*
 
-**![](https://citraweb.com/images/artikel/Simple-Static-Route/routing3-d1.png)  
-***Penambahan routing di wireless Router B pertama* ![](https://citraweb.com/images/artikel/Simple-Static-Route/routing3-d2.png)  
+*![](https://citraweb.com/images/artikel/Simple-Static-Route/routing3-d1.png)  
+*Penambahan routing di wireless Router B pertama* ![](https://citraweb.com/images/artikel/Simple-Static-Route/routing3-d2.png)  
 *Penambahan routing di wireless Router B kedua*
 
 *![](https://citraweb.com/images/artikel/Simple-Static-Route/routing3-d3.png)*
@@ -85,4 +85,4 @@ Capture dari tabel routing keempat router tersebut sebagai berikut :
 Done..  
 Let's routing the world!!!
 
-By : Pujo Dewobroto (Mikrotik.co.id)
+By : meilano404
