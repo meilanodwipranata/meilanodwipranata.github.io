@@ -1,5 +1,11 @@
 ## Daftar Isi
 
+<details>
+  <summary><strong>Linux</strong></summary>
+
+  - [Instalasi DHCP di Debian](linux/dhcp-debian.md)
+  - [Instalasi SSH](linux/ssh.md)
+</details>
 
 
   
