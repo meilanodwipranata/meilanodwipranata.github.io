@@ -2,7 +2,7 @@
 
 # Topologi
 
-![](/notes/image/1.png?w=422)
+![](/notes/image/1.webp)
 
 # Dynamic Routing Menggunakan Router Mikrotik
 
@@ -15,11 +15,6 @@ Adapun tujuan dari praktikum adalah agar mahasiswa dapat :
 \-Mahasiswa dapat melakukan konfigurasi routing dynamic pada router mikrotik.  
 \-Mahasiswa dapat menjelaskan perbedaan antara routing dynamic RIP dan OSPF.
 
-**Topologi Jaringan  
-**
-
-> 
-![1](/notes/image/1.png)
 
 **Dasar Teori**
 
