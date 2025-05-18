@@ -60,8 +60,9 @@ RIP adalah sebuah protokol dyanamic routing yang menggunakan sebuah algoritman b
 Langkah Routing RIP
 
 *   Untuk melakukan Routing menggunakan Protokol RIP masuk pada menu RIP di Routing – RIP.
-*   Masukkan Interface yang akan kita gunakan untuk melakukan Dynamic Routing pilih saja ALL agar semua interface masuk kedalam list routing RIP. 
-![6.PNG](https://edosyam.wordpress.com/wp-content/uploads/2016/10/6.png?w=640)
+*   Masukkan Interface yang akan kita gunakan untuk melakukan Dynamic Routing pilih saja ALL agar semua interface masuk kedalam list routing RIP.
+
+[6.PNG](https://edosyam.wordpress.com/wp-content/uploads/2016/10/6.png?w=640)
 
 *   Lalu masukkan network yang akan kita hubungkan menggunakan Routing RIP, masuk ke tab network,lakukan penambahan network dengan cara klik pada ikon “+” pada tab network dilanjutkan dengan memasukkan dua network yang ingin kita hubungkan.
 ![7.PNG](https://edosyam.wordpress.com/wp-content/uploads/2016/10/7.png?w=640)
