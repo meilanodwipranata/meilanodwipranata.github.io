@@ -1,6 +1,13 @@
 ## Daftar Isi
 
 
+<details>
+  <summary><strong>Linux</strong></summary>
+  1.
+  2.
+  
+
+
 ## Linux
 >
 > 1. [File Sharing Host dan Guest (Virt Manager)](./linux/file-sharing-host-dan-guest-virt-manager.md)
