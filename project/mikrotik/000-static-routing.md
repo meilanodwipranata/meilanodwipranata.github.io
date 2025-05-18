@@ -71,7 +71,7 @@ Capture dari tabel routing keempat router tersebut sebagai berikut :
 ![](https://citraweb.com/images/artikel/Simple-Static-Route/routing3-d2.png)  
 *Penambahan routing di wireless Router B kedua*
 
-![](https://citraweb.com/images/artikel/Simple-Static-Route/routing3-d3.png)*
+![](https://citraweb.com/images/artikel/Simple-Static-Route/routing3-d3.png)
 *Penambahan routing di wireless Router B ketiga*
 
 *Di sisi Router Indoor B :*
