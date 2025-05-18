@@ -44,7 +44,7 @@ RIP adalah sebuah protokol dyanamic routing yang menggunakan sebuah algoritman b
 *   Setelah melakukan konfigurasi IP untuk PC Client, lanjutkan dengan memasangkan IP ke interface Eth3 yang akan terhubung langsung dengan router tetangga. Gunakan IP 200.200.200.2/24.
  ![2](https://edosyam.wordpress.com/wp-content/uploads/2016/10/2.png?w=640)
 
-*   Setelah melakukan konfigurasi IP selanjutnya adalah melakukan konfigurasi Dinamik routing dengan menggunakan protokol OSPF.
+>*   Setelah melakukan konfigurasi IP selanjutnya adalah melakukan konfigurasi Dinamik routing dengan menggunakan protokol OSPF.
 
 **Langkah Routing Ospf**
 
