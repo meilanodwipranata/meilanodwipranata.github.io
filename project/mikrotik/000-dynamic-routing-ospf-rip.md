@@ -48,10 +48,12 @@ RIP adalah sebuah protokol dyanamic routing yang menggunakan sebuah algoritman b
 
 **Langkah Routing Ospf**
 
->*   Untuk melakukan konfigurasi OSPF adalah dengan masuk ke menu OSPF yang terdapat pada Routing – Ospf. Maka akan tampil display seperti dibawah ini 
+>*   Untuk melakukan konfigurasi OSPF adalah dengan masuk ke menu OSPF yang terdapat pada Routing – Ospf. Maka akan tampil display seperti dibawah ini
+>
 ![3](https://edosyam.wordpress.com/wp-content/uploads/2016/10/3.png?w=439&h=281)
 
 >*   Untuk melakukan konfigurasi pada OSPF adalah dengan memasukkan 2 network tetangga, dimana networknya adalah 192.168.11.0/24 dan 200.200.200.0/24 maka masukkan kedua buah network tersebut. Klik pada tab network lalu klik icon “+” masukkan kedua network tersebut.
+>
 ![4.PNG](https://edosyam.wordpress.com/wp-content/uploads/2016/10/4.png?w=640)
 
 >*   Tunggu beberapa saat, maka Router akan mengupdate Routing secara otomatis. Lakukan juga hal tersebut pada Router Kedua agar router sama sama meng-update Routing Tablenya.
