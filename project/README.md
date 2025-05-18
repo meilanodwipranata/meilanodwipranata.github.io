@@ -29,4 +29,7 @@
 
 
 
-<center>Copyrigh by Meilano Dwi Pranata</center>
+<center>Copyrigh by Meilano404</center>
+<center>meilanodwipranata@gmail.com</center>
+
+
