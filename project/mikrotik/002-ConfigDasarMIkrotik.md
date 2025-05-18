@@ -16,7 +16,7 @@ Netme akan memberikan contoh Langkah Setting MikroTik dasar dengan Modem Indihom
 Langkah pertama yang perlu anda ketahui ialah menentukan Topologi Jaringan sebelum mulai konfigurasi mikrotik.
 
 Buatlah desain topologi jaringan sesuai dengan kondisi dan rencana yang sudah di rencanakan.
-<img src="/notes/image/001-config-dasar.jpeg"/>
+<img src="/notes/image/001-config-dasar.jpg"/>
 Contoh Topologi Jaringan
 Keterangan contoh topologi diatas :
 <li>MikroTik Port Internet / Ether1 terhubung ke Modem indihome</li>
@@ -52,7 +52,7 @@ Default login mikrotik
 
 <pre>user: admin
 password: [tanpa password]</pre>
-<center><img src="https://drive.google.com/uc?export=view&id=14Wf5o_Mv6NncfNOvY5shF4Io-WHVt3RV"></center>
+<center><img src="/notes/image/002-config-dasar.jpeg"/></center>
 Login ke MikroTik dengan Mac address
 Setelah mac address sudah muncul, klik mac address tersebut dan isi kolom login menggunakan user: admin tanpa password.
 
@@ -60,7 +60,7 @@ Kemudian Klik Connect….
 
 Jika berhasil login maka tampilan MikroTik di winbox seperti berikut :
 
-<center><img src="https://drive.google.com/uc?export=view&id=1TYn4m0n87Z6_qcmrOjTRUctwLiONay-C"></center>
+<center><img src="/notes/image/003-config-dasar.jpeg"/></center>
 Default Konfigurasi MikroTik RouterOs
 Silahkan klik [Remove Configuration] untuk reset mikrotik agar semua setingan bawaan mikrotik terhapus.
 
@@ -84,7 +84,7 @@ IP address anggaplah sebagai berikut, silahkan sesuaikan dengan IP yang sudah di
 <li>ether1 – seting IP otomatis ( dhcp client ) dari modem indihome atau IP manual 192.168.100.2/24</li>
 <li>ether2 – IP manual 192.168.2.1/24</li>
 <li>>ether3 – IP manual 192.168.3.1/24</li>
-<center><img src="https://drive.google.com/uc?export=view&id=1bGCgtkmb6GA1nJpjVHbQ795VX-dx_iY8"></center>
+<center><img src="/notes/image/004-config-dasar.jpeg"/></center>
 Setting IP address di mikrotik
 Berikan IP address ke ether2 dan ether3 sama seperti gambar di atas, dan sesuaikan IP address nya.
 Jika IP address sudah di setting ke semua ether dan sudah sesuai dengan topologi, maka ke langkah seting mikrotik dasar selanjutnya.
@@ -99,7 +99,7 @@ Copy script dibawah ini kemudian paste ke new terminal winbox untuk menambahkan 
 <pre>/ip route add gateway=192.168.100.1 distance=1 dst-address=0.0.0.0/0</pre>
 
 Atau bisa menambahkan default gateway secara manual seperti ini:
-<center><img src="https://drive.google.com/uc?export=view&id=1jh6yJDYRqEn2S4aAPEf7UFt6t4pE8swa"></center>
+<center><img src="/notes/image/005-config-dasar.jpeg"/></center>
 
 Default gateway MikroTIk
 Sampai disini seharusnya mikrotik sudah bisa Ping ke IP public seperti : 8.8.8.8.
@@ -114,7 +114,7 @@ Copy script diatas kemudian paste kedalam new terminal winbox.
 
 Atau setting dns di mikrotik lewat manual :
 
-<center><img src="https://drive.google.com/uc?export=view&id=1zvjp_1WVebVrUSeDuZFA46AUB1m_WZIF"></center>
+<center><img src="/notes/image/006-config-dasar.jpeg"/></center>
 setting dns di mikrotik
 
 ## 4. NAT – Network Address Translation
