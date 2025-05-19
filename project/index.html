@@ -9,8 +9,7 @@
         margin: 0;
         padding: 0;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: url("/notes/image/background.jpg") no-repeat center center
-          fixed;
+        background: url("/notes/image/background.jpg") no-repeat center center fixed;
         background-size: cover;
         color: #fff;
         position: relative;
@@ -24,7 +23,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.6); /* gelap agar teks kontras */
+        background: rgba(0, 0, 0, 0.6);
         z-index: -1;
       }
 
@@ -39,15 +38,22 @@
         color: #00ffff;
       }
 
-      details {
+      .motivasi {
+        text-align: center;
         background-color: rgba(255, 255, 255, 0.1);
-        padding: 1rem;
-        margin: 1rem 0;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
         border-radius: 8px;
         backdrop-filter: blur(8px);
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
-        kata {
+
+      .motivasi h3 {
+        color: #00ffff;
+        margin-bottom: 1rem;
+      }
+
+      details {
         background-color: rgba(255, 255, 255, 0.1);
         padding: 1rem;
         margin: 1rem 0;
@@ -87,124 +93,74 @@
       .footer .heart {
         color: red;
       }
+
+      /* Animasi */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.8s ease-out both;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <h2>Daftar Isi</h2>
-      <details open>
-        <summary><strong></strong></summary>
+      <h2 class="fade-in" style="animation-delay: 0.1s;">Daftar Isi</h2>
+
+      <!-- MOTIVASI -->
+      <div class="motivasi fade-in" style="animation-delay: 0.2s;">
+        <h3>Motivasi</h3>
         <p>Capek itu wajar, tapi jangan sampai nyerah.</p>
         <p>Pelan-pelan asal selesai, nggak harus sempurna yang penting bergerak.</p>
         <p>Kesuksesan itu dibangun dari hal-hal kecil yang diselesaikan dengan konsisten.</p>
-      </details>
+      </div>
 
-      <details open>
+      <!-- LINUX -->
+      <details class="fade-in" style="animation-delay: 0.4s;" open>
         <summary><strong>Linux</strong></summary>
         <ul>
-          <li>
-            <a href="./linux/file-sharing-host-dan-guest-virt-manager"
-              >File Sharing Host dan Guest (Virt Manager)</a
-            >
-          </li>
-          <li>
-            <a href="./linux/instalasi-dhcp-debian">Instalasi DHCP di Debian</a>
-          </li>
-          <li>
-            <a href="./linux/instalasi-ssh-server-debian"
-              >Instalasi SSH Server di Debian</a
-            >
-          </li>
+          <li><a href="./linux/file-sharing-host-dan-guest-virt-manager">File Sharing Host dan Guest (Virt Manager)</a></li>
+          <li><a href="./linux/instalasi-dhcp-debian">Instalasi DHCP di Debian</a></li>
+          <li><a href="./linux/instalasi-ssh-server-debian">Instalasi SSH Server di Debian</a></li>
           <li><a href="./linux/instalasi-webmin">Instalasi Webmin</a></li>
-          <li>
-            <a href="./linux/iptables-port-forwarding"
-              >IPTables Port Forwarding</a
-            >
-          </li>
-          <li>
-            <a href="./linux/konfigurasi-apache-webserver-debian"
-              >Apache Web Server di Debian</a
-            >
-          </li>
-          <li>
-            <a href="./linux/konfigurasi-debian-sebagai-router"
-              >Debian sebagai Router</a
-            >
-          </li>
-          <li>
-            <a href="./linux/konfigurasi-dnsserver-di-debian"
-              >DNS Server di Debian</a
-            >
-          </li>
-          <li>
-            <a href="./linux/konfigurasi-load-balancing-nginx-di-debian"
-              >Load Balancing Nginx di Debian</a
-            >
-          </li>
-          <li>
-            <a href="./linux/konfigurasi-network-debian"
-              >Konfigurasi Jaringan Debian</a
-            >
-          </li>
-          <li>
-            <a href="./linux/konfigurasi-openvpn-script-debian"
-              >OpenVPN dengan Script</a
-            >
-          </li>
-          <li>
-            <a href="./linux/konfigurasi-webserver-apache-https-debian"
-              >HTTPS di Apache Debian</a
-            >
-          </li>
-          <li>
-            <a href="./linux/postfix-dovecot-roundcube-mailserver"
-              >Mail Server: Postfix, Dovecot, Roundcube</a
-            >
-          </li>
-          <li>
-            <a href="./linux/proftpd-ftp-ftps">FTP & FTPS Server (ProFTPD)</a>
-          </li>
+          <li><a href="./linux/iptables-port-forwarding">IPTables Port Forwarding</a></li>
+          <li><a href="./linux/konfigurasi-apache-webserver-debian">Apache Web Server di Debian</a></li>
+          <li><a href="./linux/konfigurasi-debian-sebagai-router">Debian sebagai Router</a></li>
+          <li><a href="./linux/konfigurasi-dnsserver-di-debian">DNS Server di Debian</a></li>
+          <li><a href="./linux/konfigurasi-load-balancing-nginx-di-debian">Load Balancing Nginx di Debian</a></li>
+          <li><a href="./linux/konfigurasi-network-debian">Konfigurasi Jaringan Debian</a></li>
+          <li><a href="./linux/konfigurasi-openvpn-script-debian">OpenVPN dengan Script</a></li>
+          <li><a href="./linux/konfigurasi-webserver-apache-https-debian">HTTPS di Apache Debian</a></li>
+          <li><a href="./linux/postfix-dovecot-roundcube-mailserver">Mail Server: Postfix, Dovecot, Roundcube</a></li>
+          <li><a href="./linux/proftpd-ftp-ftps">FTP & FTPS Server (ProFTPD)</a></li>
         </ul>
       </details>
 
-      <details>
+      <!-- MIKROTIK -->
+      <details class="fade-in" style="animation-delay: 0.6s;">
         <summary><strong>Mikrotik</strong></summary>
         <ul>
-          <li>
-            <a href="./mikrotik/001-CommandBasicMIkrotik"
-              >Command Basic Mikrotik</a
-            >
-          </li>
+          <li><a href="./mikrotik/001-CommandBasicMIkrotik">Command Basic Mikrotik</a></li>
           <li><a href="./mikrotik/003-LoadBalancePCC">Load Balance PCC</a></li>
           <li><a href="./mikrotik/004-VlanMikrotik">VLAN Mikrotik</a></li>
-          <li>
-            <a href="./mikrotik/mikrotik-web-proxy">Web Proxy Mikrotik</a>
-          </li>
-          <li>
-            <a href="./mikrotik/002-ConfigDasarMIkrotik"
-              >Config Dasar Mikrotik</a
-            >
-          </li>
-          <li>
-            <a href="./mikrotik/002-static-routing">Config Static Routing</a>
-          </li>
-          <li>
-            <a href="./mikrotik/000-dynamic-routing-ospf-rip"
-              >Config Dynamic Routing</a
-            >
-          </li>
-           <li>
-            <a href="./mikrotik/000-memisah-trafik-game-browsing"
-              >Memisah Trafik game dan browsing</a
-            >
-          </li>
+          <li><a href="./mikrotik/mikrotik-web-proxy">Web Proxy Mikrotik</a></li>
+          <li><a href="./mikrotik/002-ConfigDasarMIkrotik">Config Dasar Mikrotik</a></li>
+          <li><a href="./mikrotik/002-static-routing">Config Static Routing</a></li>
+          <li><a href="./mikrotik/000-dynamic-routing-ospf-rip">Config Dynamic Routing</a></li>
+          <li><a href="./mikrotik/000-memisah-trafik-game-browsing">Memisah Trafik game dan browsing</a></li>
         </ul>
       </details>
 
-
-      
-
-      <div class="footer">
+      <!-- FOOTER -->
+      <div class="footer fade-in" style="animation-delay: 0.8s;">
         <p>Copyright by Meilano404</p>
         <p>meilanodwipranata@gmail.com</p>
         <p><span class="heart">❤️</span> 404</p>
