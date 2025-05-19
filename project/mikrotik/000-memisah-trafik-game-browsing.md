@@ -12,7 +12,7 @@ Pada artikel ini, akan diulas bagaimana cara memisahkan dan melakukan manajemen 
 
 >Pertama, dengan melakukan Torch pada saat client menjalankan game tersebut. Sehingga akan didapat port dan protocol yang digunakan.
 
-![](https://citraweb.com/images/artikel/Browsing-VS-game/Torch.png)  
+![](/notes/image/001-pisah-trafik.png)  
 
 >Disamping itu, kita bisa mencari referensi lain dari internet, dimana sudah banyak yang berhasil mengetahui port dan protocol yang digunakan oleh setiap game online yang ada. Tentu setiap game menggunakan port dan protocol yang berbeda.  
 
@@ -22,27 +22,27 @@ Pada artikel ini, akan diulas bagaimana cara memisahkan dan melakukan manajemen 
 
 >Untuk pembuatan mangle game, karena cukup banyak game-game yang akan di-mangle, akan lebih mudah jika dibuat mark-connection semua game terlebih dahulu dengan marking yang sama.
 
-![](https://citraweb.com/images/artikel/Browsing-VS-game/Game-CS-Conn-Mark-400.png)
+![](/notes/image/002-pisah-trafik.png)
 
 >Langkah di atas merupakan salah satu contoh melakukan mar-connection dengan game yang menggunakan protocol tcp port 36567,8001 . Untuk game lakukan dengan langkah yang sama, sesuaikan protocol dan port yang digunakan.  
 
 >Setelah langkah mark-connection selesai, barulah dibuat mark-packet berdasar mark-connection=Koneksi-Game yang sebelumnya telah dibuat  
 
-![](https://citraweb.com/images/artikel/Browsing-VS-game/Game-Mark-Pack-400.png)
+![](/notes/image/003-pisah-trafik.png)
 
 **Mangle Selain Game Online**
 
 >Pada langkah sebelumnya telah dibuat mangle untuk game. Selanjutnya tinggal dibuat mangle untuk traffic selain game online. Di dalam nya bisa terdapat traffic browsing,chating,dsb.
 
-**![](https://citraweb.com/images/artikel/Browsing-VS-game/Browsing-Mark-Conn.png)**
+**![](/notes/image/004-pisah-trafik.png)**
 
 >Sama dengan langkah marking pada traffic game, buat mark-packet setelah langkah mark-connection selesai.
 
-![](https://citraweb.com/images/artikel/Browsing-VS-game/Browsing-Mark-Pack-400.png)
+![](/notes/image/005-pisah-trafik.png)
 
 >Hasil akhir dari konfigurasi mangle seperti berikut
 
-![](https://citraweb.com/images/artikel/Browsing-VS-game/Mangle-Result-400.png)  
+![](/notes/image/006-pisah-trafik.png)  
 
 **Manajemen bandwidth**
 
@@ -50,18 +50,18 @@ Pada artikel ini, akan diulas bagaimana cara memisahkan dan melakukan manajemen 
 
 >Langkah pertama, definisikan terlebih dahulu total bandwidth yang ada, baik untuk upload maupun download.
 
-![](https://citraweb.com/images/artikel/Browsing-VS-game/Queue-Total.png)
+![](/notes/image/007-pisah-trafik.png)
 
 >Selanjutnya, buat queue untuk traffic browsing dan game berdasarkan mark-packet yang sudah dibuat sebelumnya. Pada contoh ini menggunakan model HTB dengan bandwidth minimal (limit-at)=512k dan max-limit=1Mbps.
 
-![](https://citraweb.com/images/artikel/Browsing-VS-game/Queue-Down.png)
+![](/notes/image/008-pisah-7rafik.png)
 
 >Lakukan juga untuk traffic browsing upload dan game upload  
 
-![](https://citraweb.com/images/artikel/Browsing-VS-game/Queue-Up.png)
+![](/notes/image/009-pisah-trafik.png)
 
 **Test**
 
 >Dengan menggunakan model HTB, antar traffic browsing dengan game sudah memiliki bandwidth garansi masing-masing, sehingga jika keduanya berjalan bersamaan tidak akan saling mengganggu.
 
-![](https://citraweb.com/images/artikel/Browsing-VS-game/queue-result.png)
+![](/notes/image/010-pisah-trafik.png)
