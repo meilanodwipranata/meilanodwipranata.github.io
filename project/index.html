@@ -1,0 +1,222 @@
+<!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Halaman Kunci</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#6ee7b7;--muted:#94a3b8}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+    body{display:grid;place-items:center;background:linear-gradient(180deg,#071025 0%, #07192b 60%), radial-gradient(600px 300px at 10% 10%, rgba(110,231,183,0.06), transparent), radial-gradient(500px 250px at 90% 90%, rgba(99,102,241,0.04), transparent);color:#e6eef6}.card{width:360px;max-width:92vw;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);padding:28px;border-radius:16px;box-shadow:0 6px 30px rgba(2,6,23,0.6);backdrop-filter: blur(6px)}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:grid;place-items:center;color:#04201b;font-weight:700}
+h1{font-size:18px;margin:0}
+p.lead{color:var(--muted);font-size:13px;margin-top:6px}
+
+.pin-display{margin:18px 0 12px;display:flex;justify-content:center;gap:10px}
+.dot{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.06);box-shadow:inset 0 -3px 6px rgba(0,0,0,0.6);transition:all .18s}
+.dot.filled{background:var(--accent);transform:scale(1.08);box-shadow:0 6px 20px rgba(110,231,183,0.12)}
+
+.visually-hidden{position:absolute;left:-9999px}
+
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+button.key{padding:14px;border-radius:10px;border:0;background:rgba(255,255,255,0.03);color:inherit;font-size:18px;cursor:pointer;box-shadow:inset 0 -2px 0 rgba(0,0,0,0.2)}
+button.key:active{transform:translateY(1px)}
+
+.actions{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.hint{color:var(--muted);font-size:13px}
+.msg{height:18px;color:#ffb4b4;text-align:center;margin-top:10px;font-size:13px}
+
+.btn-primary{background:linear-gradient(90deg,var(--accent),#60a5fa);color:#022; padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+footer{margin-top:12px;color:var(--muted);text-align:center;font-size:12px}
+
+@media (max-width:420px){.card{padding:18px}}
+
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="title">
+    <div class="brand">
+      <div class="logo">LF</div>
+      <div>
+        <h1 id="title">Kunci Aplikasi</h1>
+        <p class="lead">Masukkan PIN untuk melanjutkan</p>
+      </div>
+    </div><div class="pin-display" aria-hidden="true" id="dots">
+  <div class="dot" data-index="0"></div>
+  <div class="dot" data-index="1"></div>
+  <div class="dot" data-index="2"></div>
+  <div class="dot" data-index="3"></div>
+  <div class="dot" data-index="4"></div>
+  <div class="dot" data-index="5"></div>
+  <div class="dot" data-index="6"></div>
+  <div class="dot" data-index="7"></div>
+</div>
+
+<form id="pinForm" onsubmit="return false;">
+  <label for="pinInput" class="visually-hidden">Input PIN</label>
+  <input id="pinInput" class="visually-hidden" inputmode="numeric" autocomplete="one-time-code" type="password" maxlength="8">
+
+  <div class="keypad" role="group" aria-label="Keypad angka">
+    <!-- Row 1 -->
+    <button type="button" class="key" data-val="1">1</button>
+    <button type="button" class="key" data-val="2">2</button>
+    <button type="button" class="key" data-val="3">3</button>
+    <!-- Row 2 -->
+    <button type="button" class="key" data-val="4">4</button>
+    <button type="button" class="key" data-val="5">5</button>
+    <button type="button" class="key" data-val="6">6</button>
+    <!-- Row 3 -->
+    <button type="button" class="key" data-val="7">7</button>
+    <button type="button" class="key" data-val="8">8</button>
+    <button type="button" class="key" data-val="9">9</button>
+    <!-- Row 4 -->
+    <button type="button" class="key" id="clear">C</button>
+    <button type="button" class="key" data-val="0">0</button>
+    <button type="button" class="key" id="back">⌫</button>
+  </div>
+
+  <div class="actions">
+    <div class="hint">PIN: 8 digit</div>
+    <button id="enterBtn" class="btn-primary" type="button">Buka</button>
+  </div>
+
+  <div class="msg" id="message" aria-live="polite"></div>
+</form>
+
+<footer>Jika lupa PIN hubungi administrator.</footer>
+
+  </main>  <script>
+    (function(){
+      const CORRECT = '11052008'; // PIN yang diminta user
+      const MAX_ATTEMPTS = 5;
+      const LOCK_SECONDS = 30; // lockout duration
+
+      const input = document.getElementById('pinInput');
+      const dots = document.querySelectorAll('.dot');
+      const keys = document.querySelectorAll('button.key');
+      const enterBtn = document.getElementById('enterBtn');
+      const clearBtn = document.getElementById('clear');
+      const backBtn = document.getElementById('back');
+      const msg = document.getElementById('message');
+
+      let attempts = 0;
+      let lockedUntil = 0;
+
+      function updateDots() {
+        const val = input.value || '';
+        dots.forEach((d,i)=> d.classList.toggle('filled', i < val.length));
+      }
+
+      function setMessage(text, danger=false){
+        msg.textContent = text;
+        msg.style.color = danger ? '#ffb4b4' : '#a6f3d0';
+      }
+
+      function tryUnlock(){
+        if(Date.now() < lockedUntil){
+          const remain = Math.ceil((lockedUntil - Date.now())/1000);
+          setMessage('Terlalu banyak percobaan. Coba lagi dalam ' + remain + ' detik.', true);
+          return;
+        }
+
+        const val = input.value || '';
+        if(val.length !== 8){ setMessage('PIN harus 8 digit', true); return; }
+
+        if(val === CORRECT){
+          setMessage('PIN benar — membuka...', false);
+          // Redirect ke menu.html
+          setTimeout(()=> window.location.href = 'menu.html', 350);
+        } else {
+          attempts++;
+          const left = MAX_ATTEMPTS - attempts;
+          if(left <= 0){
+            lockedUntil = Date.now() + LOCK_SECONDS*1000;
+            setMessage('Salah. Terlalu banyak percobaan. Terkunci ' + LOCK_SECONDS + ' detik.', true);
+            // clear input
+            input.value = '';
+            updateDots();
+          } else {
+            setMessage('PIN salah. Sisa percobaan: ' + left, true);
+            // visual shake
+            shakeCard();
+            input.value = '';
+            updateDots();
+          }
+        }
+      }
+
+      function shakeCard(){
+        const card = document.querySelector('.card');
+        card.animate([
+          {transform:'translateX(0)'}, {transform:'translateX(-8px)'}, {transform:'translateX(8px)'}, {transform:'translateX(0)'}
+        ], {duration:300});
+      }
+
+      keys.forEach(k=> k.addEventListener('click', (e)=>{
+        const v = k.getAttribute('data-val');
+        if(!v) return;
+        if(Date.now() < lockedUntil) return;
+        if((input.value||'').length >= 8) return;
+        input.value = (input.value || '') + v;
+        updateDots();
+      }));
+
+      backBtn.addEventListener('click', ()=>{
+        if(Date.now() < lockedUntil) return;
+        input.value = (input.value || '').slice(0,-1);
+        updateDots();
+      });
+
+      clearBtn.addEventListener('click', ()=>{
+        if(Date.now() < lockedUntil) return;
+        input.value = '';
+        updateDots();
+        setMessage('');
+      });
+
+      enterBtn.addEventListener('click', tryUnlock);
+
+      // allow Enter key
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter'){
+          e.preventDefault(); tryUnlock();
+        }
+        if(e.key === 'Backspace'){
+          e.preventDefault(); input.value = (input.value || '').slice(0,-1); updateDots();
+        }
+        if(/^[0-9]$/.test(e.key)){
+          if(Date.now() < lockedUntil) return;
+          if((input.value||'').length >= 8) return;
+          input.value = (input.value || '') + e.key; updateDots();
+        }
+      });
+
+      // lockout countdown updater
+      setInterval(()=>{
+        if(Date.now() < lockedUntil){
+          const remain = Math.ceil((lockedUntil - Date.now())/1000);
+          setMessage('Terkunci. Coba lagi dalam ' + remain + ' detik.', true);
+        } else if(msg.textContent && msg.textContent.includes('Terkunci')){
+          setMessage('');
+          attempts = 0; // reset after lockout
+        }
+      }, 500);
+
+      // initial
+      updateDots();
+
+      // small enhancement: focus to enable mobile keyboard when user taps display
+      document.querySelector('.pin-display').addEventListener('click', ()=>{
+        input.focus();
+      });
+
+      // Accessibility: if user focuses, show outline on keys
+      keys.forEach(k=>k.addEventListener('focus',()=>k.style.outline='2px solid rgba(255,255,255,0.04)'));
+    })();
+  </script></body>
+</html>
