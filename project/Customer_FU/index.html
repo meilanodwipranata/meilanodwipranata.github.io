@@ -18,18 +18,8 @@
     <h2>Ambil Nama, ID Pelanggan & Telepon</h2>
     <p>Paste data di bawah:</p>
     
-    <textarea id="inputText">ID Pelanggan
-141000763369
-ID PLN
-511820227173
-Telepon
-+6287758016443
-Nama
-DODDY LIAN HERMANTO - (FZPDU)
-Alamat
-DUSUN JATI DUKUH RT02 RW 01
-Email
-dolih2121@gmail.com</textarea>
+    <!-- textarea dikosongin -->
+    <textarea id="inputText" placeholder="Paste data di sini..."></textarea>
 
     <button onclick="extract()">Ambil Data</button>
 
@@ -48,30 +38,46 @@ dolih2121@gmail.com</textarea>
 
     function extract() {
       const text = document.getElementById('inputText').value;
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l !== "");
 
-      const idMatch = text.match(/ID\s*Pelanggan\s*[\r\n: ]+(\d{10,15})/i);
-      lastId = idMatch ? idMatch[1] : null;
+      // cari ID Pelanggan
+      let idPelanggan = null;
+      for (let i = 0; i < lines.length; i++) {
+        if (/^ID\s*Pelanggan$/i.test(lines[i])) {
+          idPelanggan = lines[i+1] || null;
+          break;
+        }
+      }
+      lastId = idPelanggan;
 
-      const namaMatch = text.match(/Nama\s*[\r\n: ]+([A-Z\s\-\(\)]+)/i);
-      lastName = namaMatch ? namaMatch[1].trim() : null;
+      // cari Nama
+      let nama = null;
+      for (let i = 0; i < lines.length; i++) {
+        if (/^Nama$/i.test(lines[i])) {
+          nama = lines[i+1] || null;
+          break;
+        }
+      }
+      lastName = nama;
 
-      const telpMatch = text.match(/Telepon\s*[\r\n: ]+([+0-9]+)/i);
-      const telepon = telpMatch ? telpMatch[1] : null;
+      // cari Telepon
+      let telepon = null;
+      for (let i = 0; i < lines.length; i++) {
+        if (/^Telepon$/i.test(lines[i])) {
+          telepon = lines[i+1] || null;
+          break;
+        }
+      }
+      lastPhone = telepon ? telepon.replace(/[^0-9]/g, '') : null;
 
+      // tampilkan
       document.getElementById('output').style.display = 'block';
       document.getElementById('outId').textContent = lastId || 'Tidak ketemu';
       document.getElementById('outName').textContent = lastName || 'Tidak ketemu';
       document.getElementById('outPhone').textContent = telepon || 'Tidak ketemu';
 
-      // simpan nomor untuk tombol WA
-      lastPhone = telepon ? telepon.replace(/[^0-9]/g, '') : null;
-
-      const waBtn = document.getElementById('waBtn');
-      if (lastPhone) {
-        waBtn.style.display = 'inline-block';
-      } else {
-        waBtn.style.display = 'none';
-      }
+      // tombol WA
+      document.getElementById('waBtn').style.display = lastPhone ? 'inline-block' : 'none';
     }
 
     function openWA() {
@@ -80,7 +86,6 @@ dolih2121@gmail.com</textarea>
         return;
       }
 
-      // buat pesan WhatsApp sesuai format
       const pesan = `Selamat Sore, Kak.%0A` +
         `Saya ingin menanyakan apakah layanan WiFi ICONNET atas nama ${lastName || "[NAMA]"} dengan nomor pelanggan ${lastId || "[ID]"} masih akan dilanjutkan, atau sudah tidak berlanjut?%0A%0A` +
         `Mohon informasinya, agar saya bisa menyesuaikan ke depannya.%0A%0A` +
