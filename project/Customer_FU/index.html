@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <title>Ambil Data Pelanggan + WhatsApp</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    .box { background: #fff; padding: 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.1); max-width: 650px; margin:auto; }
+    textarea { width:100%; height:160px; padding:10px; border-radius:6px; border:1px solid #ccc; margin-bottom:10px; }
+    button { padding:10px 14px; border:none; border-radius:6px; background:#2563eb; color:white; cursor:pointer; margin-top:6px; }
+    .result { margin-top:12px; padding:12px; background:#eef6ff; border-radius:6px; }
+    .label { font-weight:bold; }
+    #waBtn { background:#25d366; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Ambil Nama, ID Pelanggan & Telepon</h2>
+    <p>Paste data di bawah:</p>
+    
+    <textarea id="inputText">ID Pelanggan
+141000763369
+ID PLN
+511820227173
+Telepon
++6287758016443
+Nama
+DODDY LIAN HERMANTO - (FZPDU)
+Alamat
+DUSUN JATI DUKUH RT02 RW 01
+Email
+dolih2121@gmail.com</textarea>
+
+    <button onclick="extract()">Ambil Data</button>
+
+    <div id="output" class="result" style="display:none;">
+      <div><span class="label">ID Pelanggan:</span> <span id="outId"></span></div>
+      <div><span class="label">Nama:</span> <span id="outName"></span></div>
+      <div><span class="label">Telepon:</span> <span id="outPhone"></span></div>
+      <button id="waBtn" style="display:none;" onclick="openWA()">Chat via WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    let lastPhone = null;
+    let lastName = null;
+    let lastId = null;
+
+    function extract() {
+      const text = document.getElementById('inputText').value;
+
+      const idMatch = text.match(/ID\s*Pelanggan\s*[\r\n: ]+(\d{10,15})/i);
+      lastId = idMatch ? idMatch[1] : null;
+
+      const namaMatch = text.match(/Nama\s*[\r\n: ]+([A-Z\s\-\(\)]+)/i);
+      lastName = namaMatch ? namaMatch[1].trim() : null;
+
+      const telpMatch = text.match(/Telepon\s*[\r\n: ]+([+0-9]+)/i);
+      const telepon = telpMatch ? telpMatch[1] : null;
+
+      document.getElementById('output').style.display = 'block';
+      document.getElementById('outId').textContent = lastId || 'Tidak ketemu';
+      document.getElementById('outName').textContent = lastName || 'Tidak ketemu';
+      document.getElementById('outPhone').textContent = telepon || 'Tidak ketemu';
+
+      // simpan nomor untuk tombol WA
+      lastPhone = telepon ? telepon.replace(/[^0-9]/g, '') : null;
+
+      const waBtn = document.getElementById('waBtn');
+      if (lastPhone) {
+        waBtn.style.display = 'inline-block';
+      } else {
+        waBtn.style.display = 'none';
+      }
+    }
+
+    function openWA() {
+      if (!lastPhone) {
+        alert("Nomor telepon tidak tersedia!");
+        return;
+      }
+
+      // buat pesan WhatsApp sesuai format
+      const pesan = `Selamat Sore, Kak.%0A` +
+        `Saya ingin menanyakan apakah layanan WiFi ICONNET atas nama ${lastName || "[NAMA]"} dengan nomor pelanggan ${lastId || "[ID]"} masih akan dilanjutkan, atau sudah tidak berlanjut?%0A%0A` +
+        `Mohon informasinya, agar saya bisa menyesuaikan ke depannya.%0A%0A` +
+        `Terima kasih sebelumnya 🙏`;
+
+      const url = "https://wa.me/" + lastPhone + "?text=" + pesan;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
