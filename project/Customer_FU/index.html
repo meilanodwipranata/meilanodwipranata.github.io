@@ -29,6 +29,7 @@
       <div><span class="label">Nama:</span> <span id="outName"></span></div>
       <div><span class="label">Telepon:</span> <span id="outPhone"></span></div>
       <button id="waBtn" style="display:none;" onclick="openWA()">Chat via WhatsApp</button>
+      <button id="copyBtn" style="display:none;" onclick="copyPesan()">Salin Pesan</button>
     </div>
   </div>
 
@@ -44,6 +45,7 @@
       document.getElementById('outName').textContent = '';
       document.getElementById('outPhone').textContent = '';
       document.getElementById('waBtn').style.display = 'none';
+      document.getElementById('copyBtn').style.display = 'inline-block';
 
       const text = document.getElementById('inputText').value;
       const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l !== "");
@@ -110,6 +112,16 @@
       const encodedPesan = encodeURIComponent(pesanAsli);
       const url = "https://api.whatsapp.com/send?phone=" + lastPhone + "&text=" + encodedPesan;
       window.open(url, "_blank");
+    }
+    function copyPesan() {
+      const pesanAsli = `Halo, selamat ${waktuSapaan} 🙏\n` +
+        `Saya ${namaPengirim} ingin memastikan data langganan WiFi ICONNET atas nama ${lastName} dengan nomor pelanggan/internet ${lastId}, apakah sudah sesuai dengan data anda?\n\n` +
+        `Jika datanya sudah sesuai, saya juga ingin menanyakan apakah layanan wifi ICONNET masih inggin di lanjut atau sudah berhenti  ?\n\n` +
+        `Terima kasih atas bantuannya 🙏.`;
+    
+      navigator.clipboard.writeText(pesanAsli)
+        .then(() => alert("Pesan berhasil disalin! Buka WhatsApp dan tempel secara manual."))
+        .catch(err => alert("Gagal menyalin pesan."));
     }
   </script>
 </body>
