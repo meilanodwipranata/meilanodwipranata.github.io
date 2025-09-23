@@ -121,7 +121,7 @@
           const url = "https://api.whatsapp.com/send?phone=" + lastPhone + "&text=" + encodedPesan;
           window.open(url, "_blank");
 
-          alert("Pesan sudah disalin ke clipboard. Jika teks tidak muncul, silakan tempel manual.");
+          
         })
         .catch(() => {
           alert("Gagal menyalin pesan ke clipboard. Silakan copy manual.");
