@@ -6,7 +6,7 @@
   <link rel="icon" href="/dist/img/char.png" type="image/png">
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; color: #fff; background: url("/notes/image/background.jpg") no-repeat center center fixed; background-size: cover; position: relative; }
-    .box { background: #fff; padding: 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.1); max-width: 650px; margin:auto; background-color: rgba(255, 255, 255, 0.1);}
+    .box { background: rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.1); max-width: 650px; margin:auto;}
     textarea { width:95%; height:160px; padding:10px; border-radius:6px; border:1px solid #ccc; color: black; margin-bottom:10px; background-color: white; }
     button { padding:10px 14px; border:none; border-radius:6px; background:#2563eb; color:white; cursor:pointer; margin-top:6px; }
     .result { margin-top:12px; padding:12px; background:#eef6ff; border-radius:6px; color: black; }
@@ -29,7 +29,6 @@
       <div><span class="label">Nama:</span> <span id="outName"></span></div>
       <div><span class="label">Telepon:</span> <span id="outPhone"></span></div>
       <button id="waBtn" style="display:none;" onclick="openWA()">Chat via WhatsApp</button>
-      <button id="copyBtn" style="display:none;" onclick="copyPesan()">Salin Pesan</button>
     </div>
   </div>
 
@@ -38,6 +37,23 @@
     let lastName = null;
     let lastId = null;
 
+    function getWaktuSapaan() {
+      const jam = new Date().getHours();
+      if (jam < 11) return "pagi";
+      if (jam < 15) return "siang";
+      return "sore";
+    }
+
+    const namaPengirim = "Meilano Dari Iconnet"; // Ganti sesuai nama kamu
+
+    function buatPesan() {
+      const waktuSapaan = getWaktuSapaan();
+      return `Halo, selamat ${waktuSapaan} 🙏\n` +
+        `Saya ${namaPengirim} ingin memastikan data langganan WiFi ICONNET atas nama ${lastName} dengan nomor pelanggan/internet ${lastId}, apakah sudah sesuai dan aktif saat ini?\n\n` +
+        `Jika datanya sudah sesuai, saya juga ingin menanyakan apakah layanan WiFi ini akan terus berlanjut secara otomatis, atau ada hal yang perlu saya perbarui atau lakukan untuk menjaga keberlanjutannya?\n\n` +
+        `Terima kasih atas bantuannya.`;
+    }
+
     function extract() {
       // reset output
       document.getElementById('output').style.display = 'none';
@@ -45,7 +61,6 @@
       document.getElementById('outName').textContent = '';
       document.getElementById('outPhone').textContent = '';
       document.getElementById('waBtn').style.display = 'none';
-      document.getElementById('copyBtn').style.display = 'inline-block';
 
       const text = document.getElementById('inputText').value;
       const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l !== "");
@@ -96,32 +111,25 @@
         return;
       }
 
-      // Waktu sapaan otomatis
-      const jam = new Date().getHours();
-      let waktuSapaan = "sore";
-      if (jam < 11) waktuSapaan = "pagi";
-      else if (jam < 15) waktuSapaan = "siang";
+      const pesanAsli = buatPesan();
 
-      const namaPengirim = "Meilano Dari Iconnet"; // GANTI sesuai nama kamu
-
-      const pesanAsli = `Halo, selamat ${waktuSapaan} 🙏\n` +
-        `Saya ${namaPengirim} ingin memastikan data langganan WiFi ICONNET atas nama ${lastName} dengan nomor pelanggan/internet ${lastId}, apakah sudah sesuai dengan data anda?\n\n` +
-        `Jika datanya sudah sesuai, saya juga ingin menanyakan apakah layanan wifi ICONNET masih inggin di lanjut atau sudah berhenti  ?\n\n` +
-        `Terima kasih atas bantuannya 🙏.`;
-
-      const encodedPesan = encodeURIComponent(pesanAsli);
-      const url = "https://api.whatsapp.com/send?phone=" + lastPhone + "&text=" + encodedPesan;
-      window.open(url, "_blank");
-    }
-    function copyPesan() {
-      const pesanAsli = `Halo, selamat ${waktuSapaan} 🙏\n` +
-        `Saya ${namaPengirim} ingin memastikan data langganan WiFi ICONNET atas nama ${lastName} dengan nomor pelanggan/internet ${lastId}, apakah sudah sesuai dengan data anda?\n\n` +
-        `Jika datanya sudah sesuai, saya juga ingin menanyakan apakah layanan wifi ICONNET masih inggin di lanjut atau sudah berhenti  ?\n\n` +
-        `Terima kasih atas bantuannya 🙏.`;
-    
+      // copy pesan ke clipboard dulu
       navigator.clipboard.writeText(pesanAsli)
-        .then(() => alert("Pesan berhasil disalin! Buka WhatsApp dan tempel secara manual."))
-        .catch(err => alert("Gagal menyalin pesan."));
+        .then(() => {
+          // setelah copy berhasil, buka WhatsApp
+          const encodedPesan = encodeURIComponent(pesanAsli);
+          const url = "https://api.whatsapp.com/send?phone=" + lastPhone + "&text=" + encodedPesan;
+          window.open(url, "_blank");
+
+          alert("Pesan sudah disalin ke clipboard. Jika teks tidak muncul, silakan tempel manual.");
+        })
+        .catch(() => {
+          alert("Gagal menyalin pesan ke clipboard. Silakan copy manual.");
+          // tetap buka WhatsApp tanpa copy
+          const encodedPesan = encodeURIComponent(pesanAsli);
+          const url = "https://api.whatsapp.com/send?phone=" + lastPhone + "&text=" + encodedPesan;
+          window.open(url, "_blank");
+        });
     }
   </script>
 </body>
