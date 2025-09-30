@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <title>Ambil Data Pelanggan + WhatsApp</title>
+  <link rel="icon" href="/dist/img/char.png" type="image/png">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; color: #fff; background: url("/notes/image/background.jpg") no-repeat center center fixed; background-size: cover; position: relative; }
+    .box { background: rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.1); max-width: 650px; margin:auto;}
+    textarea { width:95%; height:160px; padding:10px; border-radius:6px; border:1px solid #ccc; color: black; margin-bottom:10px; background-color: white; }
+    button { padding:10px 14px; border:none; border-radius:6px; background:#2563eb; color:white; cursor:pointer; margin-top:6px; }
+    .result { margin-top:12px; padding:12px; background:#eef6ff; border-radius:6px; color: black; }
+    .label { font-weight:bold; }
+    #waBtn { background:#25d366; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <li>MlnoDPDev</li>
+    <h2>Ambil Nama, ID Pelanggan & Telepon</h2>
+    <p>Paste data di bawah:</p>
+    
+    <textarea id="inputText" placeholder="Paste data di sini..."></textarea>
+
+    <button onclick="extract()">Ambil Data</button>
+
+    <div id="output" class="result" style="display:none;">
+      <div><span class="label">ID Pelanggan:</span> <span id="outId"></span></div>
+      <div><span class="label">Nama:</span> <span id="outName"></span></div>
+      <div><span class="label">Telepon:</span> <span id="outPhone"></span></div>
+      <button id="waBtn" style="display:none;" onclick="openWA()">Chat via WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    let lastPhone = null;
+    let lastName = null;
+    let lastId = null;
+
+    function getWaktuSapaan() {
+      const jam = new Date().getHours();
+      if (jam < 11) return "pagi";
+      if (jam < 15) return "siang";
+      return "sore";
+    }
+
+    const namaPengirim = "Meilano Dari Iconnet"; // Ganti sesuai nama kamu
+
+    function buatPesan() {
+      const waktuSapaan = getWaktuSapaan();
+      return `Permisi, selamat ${waktuSapaan} 🙏\n` +
+        `Saya ${namaPengirim} ingin memastikan data langganan WiFi ICONNET atas nama ${lastName} dengan nomor pelanggan/internet ${lastId}, apakah sudah sesuai dengan data anda?\n\n` +
+        `Jika datanya sudah sesuai, saya juga ingin menanyakan apakah layanan wifi ICONNET masih inggin di lanjut atau sudah berhenti  ?\n\n` +
+        `Terima kasih atas bantuannya🙏.`;
+    }
+
+    function extract() {
+      // reset output
+      document.getElementById('output').style.display = 'none';
+      document.getElementById('outId').textContent = '';
+      document.getElementById('outName').textContent = '';
+      document.getElementById('outPhone').textContent = '';
+      document.getElementById('waBtn').style.display = 'none';
+
+      const text = document.getElementById('inputText').value;
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l !== "");
+
+      // cari ID Pelanggan
+      let idPelanggan = null;
+      for (let i = 0; i < lines.length; i++) {
+        if (/^ID\s*Pelanggan$/i.test(lines[i])) {
+          idPelanggan = lines[i+1] || null;
+          break;
+        }
+      }
+      lastId = idPelanggan;
+
+      // cari Nama
+      let nama = null;
+      for (let i = 0; i < lines.length; i++) {
+        if (/^Nama$/i.test(lines[i])) {
+          nama = lines[i+1] || null;
+          break;
+        }
+      }
+      lastName = nama;
+
+      // cari Telepon
+      let telepon = null;
+      for (let i = 0; i < lines.length; i++) {
+        if (/^Telepon$/i.test(lines[i])) {
+          telepon = lines[i+1] || null;
+          break;
+        }
+      }
+      lastPhone = telepon ? telepon.replace(/[^0-9]/g, '') : null;
+
+      // tampilkan
+      document.getElementById('output').style.display = 'block';
+      document.getElementById('outId').textContent = lastId || 'Tidak ketemu';
+      document.getElementById('outName').textContent = lastName || 'Tidak ketemu';
+      document.getElementById('outPhone').textContent = telepon || 'Tidak ketemu';
+
+      // tombol WA
+      document.getElementById('waBtn').style.display = lastPhone ? 'inline-block' : 'none';
+    }
+
+    function openWA() {
+      if (!lastPhone || !lastName || !lastId) {
+        alert("Data belum lengkap. Pastikan Nama, ID Pelanggan, dan Telepon terisi.");
+        return;
+      }
+
+      const pesanAsli = buatPesan();
+      const encodedPesan = encodeURIComponent(pesanAsli);
+      const url = "https://api.whatsapp.com/send?phone=" + lastPhone + "&text=" + encodedPesan;
+
+      // copy ke clipboard dulu
+      navigator.clipboard.writeText(pesanAsli)
+        .then(() => {
+          // langsung buka di tab yang sama
+          window.location.href = url;
+        })
+        .catch(() => {
+          alert("Gagal menyalin pesan ke clipboard. Silakan copy manual.");
+          window.location.href = url;
+        });
+    }
+  </script>
+</body>
+</html>
