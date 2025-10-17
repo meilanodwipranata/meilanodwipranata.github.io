@@ -45,7 +45,7 @@ Attached to: Host-Only Adapter
 ## ⚙️ Langkah 2: Set IP Statis untuk eth1
 
 Edit file konfigurasi jaringan:
-```bash
+```<pre style="background-color:#2d2d2d; color:#ffffff; padding:10px; border-radius:8px;"><code>sudo systemctl restart networking</code></pre>
 nano /etc/network/interfaces
 ```
 
