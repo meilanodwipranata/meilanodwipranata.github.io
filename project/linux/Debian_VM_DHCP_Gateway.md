@@ -36,94 +36,109 @@ Panduan ini menjelaskan cara mengatur **VM Debian di VirtualBox** sebagai **DHCP
 ## ⚙️ Langkah 1: Konfigurasi Adapter di VirtualBox
 
 ### Adapter 1 (Internet)
-```
+
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 Attached to: NAT (atau Bridged Adapter)
-```
+</pre>
+
 
 ### Adapter 2 (LAN)
-```
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 Attached to: Host-Only Adapter
-```
+</pre>
+
 
 ---
 
 ## ⚙️ Langkah 2: Set IP Statis untuk eth1
 
 Edit file konfigurasi jaringan:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 nano /etc/network/interfaces
-```
+</pre>
 
 Tambahkan konfigurasi berikut:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 auto eth1
 iface eth1 inet static
   address 192.168.10.1
   netmask 255.255.255.0
-```
+</pre>
+
 
 Restart networking:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 systemctl restart networking
-```
+</pre>
+
+
 
 ---
 
 ## 📦 Langkah 3: Install dan Konfigurasi DHCP Server
 
 ### Install DHCP server:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 apt update
 apt install isc-dhcp-server
-```
+</pre>
+
 
 ### Edit file konfigurasi DHCP:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 nano /etc/dhcp/dhcpd.conf
-```
+</pre>
+
+
 
 Contoh konfigurasi:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 subnet 192.168.10.0 netmask 255.255.255.0 {
   range 192.168.10.100 192.168.10.200;
   option routers 192.168.10.1;
   option domain-name-servers 8.8.8.8, 1.1.1.1;
 }
-```
+</pre>
+
 
 ### Tentukan interface DHCP:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 nano /etc/default/isc-dhcp-server
-```
+</pre>
+
 
 Ubah menjadi:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 INTERFACESv4="eth1"
-```
+</pre>
+
 
 Restart DHCP server:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 systemctl restart isc-dhcp-server
-```
+</pre>
+
 
 ---
 
 ## 🔥 Langkah 4: Aktifkan IP Forwarding
 
 Edit sysctl.conf:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 nano /etc/sysctl.conf
-```
+</pre>
+
 
 Uncomment atau tambahkan:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 net.ipv4.ip_forward=1
-```
+</pre>
 
 Aktifkan tanpa reboot:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 sudo sysctl -w net.ipv4.ip_forward=1
-```
+</pre>
+
 
 ---
 
@@ -131,14 +146,15 @@ sudo sysctl -w net.ipv4.ip_forward=1
 
 Asumsikan interface internet adalah `eth0`, dan LAN adalah `eth1`.
 
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 # NAT
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 # Forwarding rules
 iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
 iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
-```
+</pre>
+
 
 ---
 
@@ -146,9 +162,10 @@ iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCE
 
 Agar aturan NAT tetap ada setelah reboot:
 
-```bash
-apt install iptables-persistent
-```
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
+sudo sysctl -w net.ipv4.ip_forward=1
+</pre>
+
 
 Pilih **Yes** saat diminta untuk menyimpan rules.
 
@@ -165,24 +182,26 @@ Pilih **Yes** saat diminta untuk menyimpan rules.
 ## 🧪 Troubleshooting
 
 Cek forwarding:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 cat /proc/sys/net/ipv4/ip_forward
-```
+</pre>
+
 
 Cek status DHCP:
-```bash
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 systemctl status isc-dhcp-server
-```
+</pre>
+
 
 Cek IP klien:  
 Pastikan IP dan gateway benar:
-
+<pre style="background-color:#1e1e1e; color:#00ff00; padding:10px; border-radius:8px;">
 | Parameter | Nilai |
 |------------|--------|
 | IP | 192.168.10.x |
 | Gateway | 192.168.10.1 |
+</pre>
 
----
 
 ## 📌 Catatan
 
