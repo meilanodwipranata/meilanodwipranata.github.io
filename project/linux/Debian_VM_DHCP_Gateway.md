@@ -1,3 +1,15 @@
+<style>
+body {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+</style>
+
+
+
+
 # 🧭 Debian VM Sebagai DHCP Server dan Gateway NAT
 
 Panduan ini menjelaskan cara mengatur **VM Debian di VirtualBox** sebagai **DHCP server sekaligus gateway internet (NAT)** untuk klien yang terhubung ke jaringan lokal (LAN), misalnya lewat **Host-Only Adapter** atau **Bridged interface**.
