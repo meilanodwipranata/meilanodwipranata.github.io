@@ -39,7 +39,7 @@ Attached to: Host-Only Adapter
 
 Edit file konfigurasi jaringan:
 ```bash
-sudo nano /etc/network/interfaces
+nano /etc/network/interfaces
 ```
 
 Tambahkan konfigurasi berikut:
@@ -52,7 +52,7 @@ iface eth1 inet static
 
 Restart networking:
 ```bash
-sudo systemctl restart networking
+systemctl restart networking
 ```
 
 ---
@@ -61,13 +61,13 @@ sudo systemctl restart networking
 
 ### Install DHCP server:
 ```bash
-sudo apt update
-sudo apt install isc-dhcp-server
+apt update
+apt install isc-dhcp-server
 ```
 
 ### Edit file konfigurasi DHCP:
 ```bash
-sudo nano /etc/dhcp/dhcpd.conf
+nano /etc/dhcp/dhcpd.conf
 ```
 
 Contoh konfigurasi:
@@ -81,7 +81,7 @@ subnet 192.168.10.0 netmask 255.255.255.0 {
 
 ### Tentukan interface DHCP:
 ```bash
-sudo nano /etc/default/isc-dhcp-server
+nano /etc/default/isc-dhcp-server
 ```
 
 Ubah menjadi:
@@ -91,7 +91,7 @@ INTERFACESv4="eth1"
 
 Restart DHCP server:
 ```bash
-sudo systemctl restart isc-dhcp-server
+systemctl restart isc-dhcp-server
 ```
 
 ---
@@ -100,7 +100,7 @@ sudo systemctl restart isc-dhcp-server
 
 Edit sysctl.conf:
 ```bash
-sudo nano /etc/sysctl.conf
+nano /etc/sysctl.conf
 ```
 
 Uncomment atau tambahkan:
@@ -121,11 +121,11 @@ Asumsikan interface internet adalah `eth0`, dan LAN adalah `eth1`.
 
 ```bash
 # NAT
-sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 # Forwarding rules
-sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
-sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 ```
 
 ---
@@ -135,7 +135,7 @@ sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j
 Agar aturan NAT tetap ada setelah reboot:
 
 ```bash
-sudo apt install iptables-persistent
+apt install iptables-persistent
 ```
 
 Pilih **Yes** saat diminta untuk menyimpan rules.
@@ -159,7 +159,7 @@ cat /proc/sys/net/ipv4/ip_forward
 
 Cek status DHCP:
 ```bash
-sudo systemctl status isc-dhcp-server
+systemctl status isc-dhcp-server
 ```
 
 Cek IP klien:  
