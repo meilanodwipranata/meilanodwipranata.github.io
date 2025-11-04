@@ -9,7 +9,7 @@
         margin: 0;
         padding: 0;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: url("/notes/image/background1.jpg") no-repeat center center fixed;
+        background: url("/notes/image/background.jpg") no-repeat center center fixed;
         background-size: cover;
         color: #fff;
         position: relative;
@@ -109,6 +109,21 @@
       .fade-in {
         animation: fadeIn 0.8s ease-out both;
       }
+
+      /* Efek mengetik */
+      .typing {
+        display: inline-block;
+        border-right: 2px solid #00ffff;
+        white-space: pre-wrap;
+        overflow: hidden;
+        animation: caret 0.7s infinite;
+      }
+
+      @keyframes caret {
+        50% {
+          border-color: transparent;
+        }
+      }
     </style>
   </head>
   <body>
@@ -121,9 +136,7 @@
       <!-- MOTIVASI -->
       <div class="motivasi fade-in" style="animation-delay: 0.2s;">
         <h3>Motivasi</h3>
-        <p>Capek itu wajar, tapi jangan sampai nyerah.</p>
-        <p>Pelan-pelan asal selesai, nggak harus sempurna yang penting bergerak.</p>
-        <p>Kesuksesan itu dibangun dari hal-hal kecil yang diselesaikan dengan konsisten.</p>
+        <p id="typingText" class="typing"></p>
       </div>
 
       <!-- LINUX -->
@@ -168,7 +181,6 @@
         <summary><strong>RANDOM</strong></summary>
         <ul>
           <li><a href="./Customer_FU/">Customer_FU</a></li>
-          
         </ul>
       </details>
 
@@ -179,5 +191,36 @@
         <p><span class="heart">❤️</span> 404</p>
       </div>
     </div>
+
+    <script>
+      const motivasiList = [
+        "Pelaut yang hebat tidak datang dari ombak yang tenang.",
+        "Capek itu wajar, tapi jangan sampai nyerah.",
+        "Pelan-pelan asal selesai, nggak harus sempurna yang penting bergerak.",
+        "Kesuksesan itu dibangun dari hal-hal kecil yang diselesaikan dengan konsisten."
+      ];
+
+      const typingElement = document.getElementById("typingText");
+      let currentMotivasi = 0;
+      let charIndex = 0;
+
+      function typeEffect() {
+        const currentText = motivasiList[currentMotivasi];
+        if (charIndex < currentText.length) {
+          typingElement.textContent += currentText.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeEffect, 50);
+        } else {
+          setTimeout(() => {
+            typingElement.textContent = "";
+            charIndex = 0;
+            currentMotivasi = (currentMotivasi + 1) % motivasiList.length;
+            typeEffect();
+          }, 2500);
+        }
+      }
+
+      window.addEventListener("load", typeEffect);
+    </script>
   </body>
 </html>
