@@ -212,3 +212,197 @@ Dengan Ansible, proses instalasi dan konfigurasi web server menjadi:
 
 > ✨ Project ini cocok untuk pembelajaran DevOps, LKS ITNSA, dan
 > implementasi automation skala kecil hingga besar.
+
+
+
+# 🚀 Ansible Web Server + NFTables (Debian)
+
+Project automation server menggunakan **Ansible** untuk:
+
+- ✅ Install Nginx
+- ✅ Deploy Web
+- ✅ Konfigurasi NFTables Firewall
+- ✅ Allow SSH & HTTP
+- ✅ Drop semua trafik lain
+- ✅ Auto restart service jika ada perubahan
+
+---
+
+## 📦 Requirement
+
+- Debian 11/12
+- Ansible >= 2.9
+- SSH akses ke server
+- User dengan sudo/root
+
+---
+
+## 📁 Struktur Project
+
+```
+project/
+│── inventory
+│── playbook.yml
+│── README.md
+```
+
+---
+
+## 📄 inventory
+
+```ini
+[web]
+192.168.1.10 ansible_user=root
+```
+
+---
+
+## 📄 playbook.yml
+
+```yaml
+- name: Setup Web + NFTables
+  hosts: web
+  become: yes
+
+  vars:
+    web_root: /var/www/lks
+
+  tasks:
+
+  - name: Install nginx dan nftables
+    apt:
+      name:
+        - nginx
+        - nftables
+      state: present
+      update_cache: yes
+
+  - name: Buat folder web
+    file:
+      path: "{{ web_root }}"
+      state: directory
+      owner: www-data
+      group: www-data
+      mode: '0755'
+
+  - name: Deploy index
+    copy:
+      dest: "{{ web_root }}/index.html"
+      content: "<h1>LKS NFTABLES</h1>"
+
+  - name: Edit root nginx
+    lineinfile:
+      path: /etc/nginx/sites-available/default
+      regexp: 'root /var/www/html;'
+      line: "root {{ web_root }};"
+    notify: Restart nginx
+
+  - name: Enable nginx
+    systemd:
+      name: nginx
+      state: started
+      enabled: yes
+
+  - name: Konfigurasi nftables
+    copy:
+      dest: /etc/nftables.conf
+      content: |
+        flush ruleset
+
+        table inet filter {
+          chain input {
+            type filter hook input priority 0;
+
+            ct state established,related accept
+            iif lo accept
+
+            tcp dport 22 accept
+            tcp dport 80 accept
+
+            counter drop
+          }
+
+          chain forward {
+            type filter hook forward priority 0;
+            drop
+          }
+
+          chain output {
+            type filter hook output priority 0;
+            accept
+          }
+        }
+    notify: Restart nftables
+
+  - name: Enable nftables service
+    systemd:
+      name: nftables
+      state: started
+      enabled: yes
+
+  handlers:
+    - name: Restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+
+    - name: Restart nftables
+      systemd:
+        name: nftables
+        state: restarted
+```
+
+---
+
+## 🔥 Firewall Rules
+
+| Rule | Keterangan |
+|------|------------|
+| Allow 22 | SSH |
+| Allow 80 | HTTP |
+| Allow loopback | Local traffic |
+| Allow established | Koneksi aktif |
+| Drop lainnya | Security default |
+
+---
+
+## ▶️ Cara Menjalankan
+
+```bash
+ansible-playbook -i inventory playbook.yml
+```
+
+---
+
+## 🛡 Security Model
+
+- Default policy: DROP
+- Only required ports opened
+- Persistent firewall via `/etc/nftables.conf`
+- Auto restart via handler
+
+---
+
+## 📈 Pengembangan Lanjutan
+
+- [ ] HTTPS (Port 443)
+- [ ] Fail2ban integration
+- [ ] NAT Router Mode
+- [ ] Multi-subnet filtering
+- [ ] Logging dropped packets
+
+---
+
+## 🏆 Use Case
+
+Cocok untuk:
+- Lab latihan LKS ITNSA
+- Automation deployment
+- Mini DevOps project
+- Server hardening dasar
+
+---
+
+## 👨‍💻 Author
+
+Lano ITNSA 🚀
